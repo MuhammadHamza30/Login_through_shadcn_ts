@@ -20,7 +20,6 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 function LogIn() {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(eyeOff);
 
@@ -48,7 +47,6 @@ function LogIn() {
 
     if (data.email === storedUser?.email && data.password === storedUser?.password) {
       localStorage.setItem("isLoggedIn", "true");
-      setIsLoggedIn(true);
       navigate("/Featuer");
     } else {
       toast.error("Invalid Field", {
@@ -73,7 +71,6 @@ function LogIn() {
   useEffect(() => {
     const storedAuth = localStorage.getItem("isLoggedIn");
     if (storedAuth === "true") {
-      setIsLoggedIn(true);
       navigate("/Featuer");
     }
   }, [navigate]);
